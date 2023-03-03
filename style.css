@@ -74,6 +74,11 @@ button {
     font-size: 16px;
     text-align: center;
     border: 2px solid var(--purple-color);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4d28c9;
 }
 
 button.small {
