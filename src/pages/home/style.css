@@ -114,6 +114,10 @@ th {
     width: 20%;
 }
 
+tr {
+    height: 32px;
+}
+
 th.right {
     text-align: right;
 }

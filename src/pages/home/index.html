@@ -26,16 +26,16 @@
         </div>
         <div class="finance-card-container">
             <div id="finance-card-1" class="finance-card">
-                <h3>Total de lançamentos</h3>
+                <!-- <h3>Total de lançamentos</h3> -->
             </div>
             <div id="finance-card-2" class="finance-card">
-                <h3>Receitas</h3>
+                <!-- <h3>Receitas</h3> -->
             </div>
             <div id="finance-card-3" class="finance-card">
-                <h3>Despesas</h3>
+                <!-- <h3>Despesas</h3> -->
             </div>
             <div id="finance-card-4" class="finance-card">
-                <h3>Balanço</h3>
+                <!-- <h3>Balanço</h3> -->
             </div>
         </div>
 
@@ -53,13 +53,13 @@
                         <th class="right">Valor</th>
                         <th class="right">Ação</th>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td class="left">teste</td>
                         <td class="left">teste</td>
                         <td>teste</td>
                         <td class="right">teste</td>
                         <td class="right">teste</td>
-                    </tr>
+                    </tr> -->
 
                 </table>
             </div>
@@ -71,7 +71,7 @@
                 <h3>Adicionar Lançamento</h3>
                 <button onclick="onCloseModal()" class="small">Fechar</button>
             </div>
-            <form id="form-register" class="mt">
+            <form id="form-finance-release" class="mt">
                 <label class="mt" for="input-title">Título:</label>
                 <input 
                     class="mt smaller" 
@@ -87,7 +87,8 @@
                     id="input-value" 
                     placeholder="R$0,00 (Use valores negativos para uma despesa.)" 
                     name="input-value"
-                    type="text"
+                    type="number"
+                    step="any"
                     required
                 />
                 <label class="mt" for="input-date">Data:</label>
@@ -105,8 +106,9 @@
                     id="input-category" 
                     name="input-category"
                     required >
+                    <!-- <option>Selecionar categoria</option> -->
                 </select>
-
+                
                 <button type="submit" class="full-width mt large">Adicionar</button>
             </form>
             
