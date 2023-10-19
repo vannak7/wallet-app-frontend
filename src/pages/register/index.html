@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wallet App - Cadastrar</title>
     <link rel="stylesheet" href="../../../style.css">
-    
+    <script src="index.js"></script>
 </head>
 <body>
     <div class="auth-container">
@@ -16,23 +16,27 @@
                 <p class="mt small">
                     Insira seu nome e seu e-mail para ter acesso ao Wallet app e gerenciar suas finanças.
                 </p>
-                <label class="mt" for="input-name">Nome:</label>
-                <input 
-                    class="mt smaller" 
-                    id="input-name" 
-                    placeholder="Insira seu nome" 
-                    name="input-email"
-                    type="email"
-                />
-                <label class="mt" for="input-email">E-mail:</label>
-                <input 
-                    class="mt smaller" 
-                    id="input-email" 
-                    placeholder="email@example.com" 
-                    name="input-email"
-                    type="email"
-                />
-                <button class="full-width mt large">Cadastrar</button>
+                <form id="form-register" class="mt">
+                    <label for="input-name">Nome:</label>
+                    <input 
+                        class="mt smaller" 
+                        id="input-name" 
+                        placeholder="Insira seu nome" 
+                        name="input-name"
+                        type="text"
+                        required
+                    />
+                    <label class="mt" for="input-email">E-mail:</label>
+                    <input 
+                        class="mt smaller" 
+                        id="input-email" 
+                        placeholder="email@example.com" 
+                        name="input-email"
+                        type="email"
+                        required
+                    />
+                    <button type="submit" class="full-width mt large">Cadastrar</button>
+                </form>
                 <a 
                     class="mt larger"
                     href="../../../index.html">
