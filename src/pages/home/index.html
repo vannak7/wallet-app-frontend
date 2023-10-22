@@ -43,7 +43,7 @@
             <div class="table-content-container">
                 <div class="table-content-header">
                     <h2>Últimos lançamentos</h2>
-                    <button class="small">Adicionar</button>
+                    <button onclick="onOpenModal()" class="small">Adicionar</button>
                 </div>
                 <table id="finances-table">
                     <tr>
@@ -60,15 +60,56 @@
                         <td class="right">teste</td>
                         <td class="right">teste</td>
                     </tr>
-                    <tr>
-                        <td class="left">teste</td>
-                        <td class="left">teste</td>
-                        <td>teste</td>
-                        <td class="right">teste</td>
-                        <td class="right">teste</td>
-                    </tr>
+
                 </table>
             </div>
+        </div>
+    </div>
+    <div id="modal" class="modal-background">
+        <div class="modal-content">
+            <div class="modal-content-header">
+                <h3>Adicionar Lançamento</h3>
+                <button onclick="onCloseModal()" class="small">Fechar</button>
+            </div>
+            <form id="form-register" class="mt">
+                <label class="mt" for="input-title">Título:</label>
+                <input 
+                    class="mt smaller" 
+                    id="input-title" 
+                    placeholder="Ex: Conta de energia" 
+                    name="input-title"
+                    type="text"
+                    required
+                />
+                <label class="mt" for="input-value">Valor:</label>
+                <input 
+                    class="mt smaller" 
+                    id="input-value" 
+                    placeholder="R$0,00 (Use valores negativos para uma despesa.)" 
+                    name="input-value"
+                    type="text"
+                    required
+                />
+                <label class="mt" for="input-date">Data:</label>
+                <input 
+                    class="mt smaller" 
+                    id="input-date" 
+                    placeholder="DD/MM/AAAA" 
+                    name="input-date"
+                    type="date"
+                    required
+                />
+                <label class="mt" for="input-category">Categoria:</label>
+                <select 
+                    class="mt smaller" 
+                    id="input-category" 
+                    name="input-category"
+                    required >
+                </select>
+
+                <button type="submit" class="full-width mt large">Adicionar</button>
+            </form>
+            
         </div>
     </div>
     
