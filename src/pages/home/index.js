@@ -1,3 +1,33 @@
+
+const onLogout = () => {
+    localStorage.clear();
+    window.open("../../../index.html", "_self");
+    };
+
+    
+
+const onDeleteItem = async (id) => {
+    try {
+    const email = localStorage.getItem("@WalletApp:userEmail");
+    
+    await fetch(`https://mp-wallet-app-api.herokuapp.com/finances/${id}`, {
+        method: "DELETE",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+            email: email,
+        },
+    });
+        onLoadFinancesData();
+        } catch (error) { 
+        alert("Error ao deletar o item.");
+        }
+};
+
+
+
+
 const renderFinancesList = (data) => {
     const table = document.getElementById("finances-table");
     table.innerHTML = "";
@@ -197,8 +227,8 @@ const onLoadFinancesData = async () => {
         {
             method: "GET",
             headers: {
-            email: email,
-        },
+                email: email,
+            },
         }
         );
         const data = await result.json();
@@ -212,37 +242,42 @@ const onLoadFinancesData = async () => {
 
 
 
-const onLoadUserInfo = () => {
-    const email = localStorage.getItem('@WalletApp:userEmail');
-    const name = localStorage.getItem('@WalletApp:userName');
+    const onLoadUserInfo = () => {
+        const email = localStorage.getItem("@WalletApp:userEmail");
+        const name = localStorage.getItem("@WalletApp:userName");
+
+        const navbarUserInfo = document.getElementById("navbar-user-container");
+        const navbarUserAvatar = document.getElementById("navbar-user-avatar");
     
-    const navbarUserInfo = document.getElementById("navbar-user-container");
-    const navbarUserAvatar = document.getElementById("navbar-user-avatar");
+        // add user email
+        const emailElement = document.createElement("p");
+        const emailText = document.createTextNode(email);
+        emailElement.appendChild(emailText);
+        navbarUserInfo.appendChild(emailElement);
+    
+        // add logout link
+        const logoutElement = document.createElement("a");
+        logoutElement.onclick = () => onLogout();
+        logoutElement.style.cursor = "pointer;";
+        const logoutText = document.createTextNode("sair");
+        logoutElement.appendChild(logoutText);
+        navbarUserInfo.appendChild(logoutElement);
+    
+        // add user first letter inside avatar
+        const nameElement = document.createElement("h3");
+        const nameText = document.createTextNode(name.charAt(0));
+        nameElement.appendChild(nameText);
+        navbarUserAvatar.appendChild(nameElement);
+    };
 
-    // Add user email
-    const emailElement = document.createElement("p");
-    const emailText = document.createTextNode(email);
-    emailElement.appendChild(emailText);
-    navbarUserInfo.appendChild(emailElement)
 
-    // Add logout link
-    const logoutElement = document.createElement("a");
-    const logoutText = document.createTextNode("Sair");
-    logoutElement.appendChild(logoutText);
-    navbarUserInfo.appendChild(logoutElement);
-
-    // Add user first letter inside avatar
-    const nameElement = document.createElement("h3");
-    const nameText = document.createTextNode(name.charAt(0));
-    nameElement.appendChild(nameText);
-    navbarUserAvatar.appendChild(nameElement);
-
-};
 // CATEGORY MODAL
 const onLoadCategories = async () => {
     try {
         const categoriesSelect = document.getElementById("input-category");
-        const response = await fetch("https://mp-wallet-app-api.herokuapp.com/categories");
+        const response = await fetch(
+            "https://mp-wallet-app-api.herokuapp.com/categories"
+        );
         const categoriesResult = await response.json();
         categoriesResult.map((category) => {
             const option = document.createElement("option");
@@ -251,7 +286,8 @@ const onLoadCategories = async () => {
             option.value = category.id;
             option.appendChild(categoryText);
             categoriesSelect.appendChild(option);
-        })
+            //categoriesSelect.append(option);
+        });
 
     } catch (error) {
         alert("Erro ao carregar categorias");
@@ -333,12 +369,23 @@ const onCreateFinanceRelease = async (target) => {
     }
 };
 
+const setInitialDate = () => {
+    const dateInput = document.getElementById("select-date");
+    const nowDate = new Date().toISOString().split("T")[0];
+    dateInput.value = nowDate;
+    dateInput.addEventListener("change", () => {
+        onLoadFinancesData();
+    });
+};
+
 
 
 window.onload = () => {
+    setInitialDate();
     onLoadUserInfo();
     onLoadFinancesData();
     onLoadCategories();
+    
 
     const form = document.getElementById("form-finance-release");
     form.onsubmit = (event) => {
